@@ -1,0 +1,43 @@
+package br.com.unialfa.trapostadoradecargas.Carga.Service;
+
+import br.com.unialfa.trapostadoradecargas.Carga.Business.CargaBusiness;
+import br.com.unialfa.trapostadoradecargas.Carga.Domain.Carga;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping(path = "/api/carga")
+public class CargaController {
+
+    @Autowired
+    private CargaBusiness cargaBusiness;
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public Iterable<Carga> listarCarga() {
+
+        return cargaBusiness.listarCarga();
+    }
+
+    @PostMapping(path = "/add")
+    public void cadastrarCarga( @RequestBody Carga carga ){
+
+        cargaBusiness.cadastrarCarga(carga);
+    }
+
+    @PutMapping(path = "/edit")
+    public void editarCarga( @RequestBody Carga carga ){
+
+        cargaBusiness.editarCarga(carga);
+    }
+
+    @DeleteMapping(value = "/delete/{id}")
+    public @ResponseBody void deletarCarga(@PathVariable(name = "id") long id){
+
+        cargaBusiness.deletarCarga(id);
+    }
+
+}
+
+
+
