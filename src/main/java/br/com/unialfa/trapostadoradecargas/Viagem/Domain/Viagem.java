@@ -1,12 +1,15 @@
 package br.com.unialfa.trapostadoradecargas.Viagem.Domain;
 
 import br.com.unialfa.trapostadoradecargas.Carga.Domain.Carga;
+import br.com.unialfa.trapostadoradecargas.Cliente.Domain.Cliente;
 import br.com.unialfa.trapostadoradecargas.Motorista.Domain.Motorista;
 import br.com.unialfa.trapostadoradecargas.Rota.Domain.Rota;
 import br.com.unialfa.trapostadoradecargas.Veiculo.Domain.Veiculo;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,8 +18,12 @@ public class Viagem {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    private double horaPartida;
-    private double horaChegada;
+
+    @OneToMany
+    private List<Cliente> cliente;
+
+    private String horaPartida;
+    private String horaChegada;
     private LocalDate dataSaida;
     private LocalDate dataChegada;
 
@@ -32,7 +39,7 @@ public class Viagem {
     @OneToMany(cascade = CascadeType.ALL)
     private List<Rota> rota;
 
-    private double frete;
+    private BigDecimal frete;
 
     public Viagem() {
     }
@@ -45,19 +52,19 @@ public class Viagem {
         this.id = id;
     }
 
-    public double getHoraPartida() {
+    public String getHoraPartida() {
         return horaPartida;
     }
 
-    public void setHoraPartida(double horaPartida) {
+    public void setHoraPartida(String horaPartida) {
         this.horaPartida = horaPartida;
     }
 
-    public double getHoraChegada() {
+    public String getHoraChegada() {
         return horaChegada;
     }
 
-    public void setHoraChegada(double horaChegada) {
+    public void setHoraChegada(String horaChegada) {
         this.horaChegada = horaChegada;
     }
 
@@ -109,11 +116,19 @@ public class Viagem {
         this.rota = rota;
     }
 
-    public double getFrete() {
+    public BigDecimal getFrete() {
         return frete;
     }
 
-    public void setFrete(double frete) {
+    public void setFrete(BigDecimal frete) {
         this.frete = frete;
+    }
+
+    public ArrayList<Cliente> getCliente() {
+        return (ArrayList<Cliente>) cliente;
+    }
+
+    public void setCliente(ArrayList<Cliente> cliente) {
+        this.cliente = cliente;
     }
 }
