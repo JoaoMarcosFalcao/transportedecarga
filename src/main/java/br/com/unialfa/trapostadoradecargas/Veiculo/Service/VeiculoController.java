@@ -1,10 +1,13 @@
 package br.com.unialfa.trapostadoradecargas.Veiculo.Service;
 
+import br.com.unialfa.trapostadoradecargas.Veiculo.Domain.Veiculo;
 import br.com.unialfa.trapostadoradecargas.Veiculo.Business.VeiculoBusiness;
 import br.com.unialfa.trapostadoradecargas.Veiculo.Domain.Veiculo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/veiculo")
@@ -14,9 +17,16 @@ public class VeiculoController {
     private VeiculoBusiness veiculoBusiness;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<Veiculo> listarVeiculo() {
+    public Iterable<Veiculo> listarVeiculos() {
 
-        return veiculoBusiness.listarVeiculo();
+        return veiculoBusiness.listarVeiculos();
+
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Optional<Veiculo> buscarVeiculosPorid(@PathVariable(name = "id") long id){
+
+        return veiculoBusiness.buscarVeiculosPorId(id);
     }
 
     @PostMapping(path = "/add")

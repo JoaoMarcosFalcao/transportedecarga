@@ -1,5 +1,6 @@
 package br.com.unialfa.trapostadoradecargas.Cliente.Domain;
 
+import br.com.unialfa.trapostadoradecargas.Carga.Domain.Carga;
 import br.com.unialfa.trapostadoradecargas.Endereco.Domain.Endereco;
 import br.com.unialfa.trapostadoradecargas.Telefone.Domain.Telefone;
 
@@ -17,12 +18,16 @@ public class Cliente {
     private String email;
 
     @OneToMany(cascade = CascadeType.ALL)
+    private List<Carga> cargas;
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Telefone> telefone;
 
     @OneToOne
+    @JoinColumn
     private Endereco endereco;
-    private String Cpf;
 
+    private String Cpf;
 
 
     public long getId() {
@@ -71,6 +76,14 @@ public class Cliente {
 
     public void setCpf(String cpf) {
         Cpf = cpf;
+    }
+
+    public List<Carga> getCargas() {
+        return cargas;
+    }
+
+    public void setCargas(List<Carga> cargas) {
+        this.cargas = cargas;
     }
 
     public Cliente() {

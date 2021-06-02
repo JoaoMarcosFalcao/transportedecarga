@@ -1,5 +1,6 @@
 package br.com.unialfa.trapostadoradecargas.Carga.Domain;
 
+import br.com.unialfa.trapostadoradecargas.Cliente.Domain.Cliente;
 import br.com.unialfa.trapostadoradecargas.Viagem.Domain.Viagem;
 
 import javax.persistence.*;
@@ -15,8 +16,11 @@ public class Carga {
     private double altura;
     private double comprimento;
     private double largura;
-    private double pesoOcupada;
+    private double pesoCubado;
     private TipoCarga tipoCarga;
+
+    @ManyToOne
+    private Cliente cliente;
 
     @ManyToOne
     private Viagem viagem;
@@ -64,16 +68,24 @@ public class Carga {
         this.largura = largura;
     }
 
-    public double getPesoOcupada() {
-        return pesoOcupada;
+    public double getPesoCubado() {
+        return pesoCubado;
     }
 
-    public void setPesoOcupada(double pesoOcupada) {
-        this.pesoOcupada = pesoOcupada;
+    public void setPesoCubado(double pesoCubado) {
+        this.pesoCubado = pesoCubado;
     }
 
     public TipoCarga getTipoCarga() {
         return tipoCarga;
+    }
+
+    public Viagem getViagem() {
+        return viagem;
+    }
+
+    public void setViagem(Viagem viagem) {
+        this.viagem = viagem;
     }
 
     public void setTipoCarga(TipoCarga tipoCarga) {

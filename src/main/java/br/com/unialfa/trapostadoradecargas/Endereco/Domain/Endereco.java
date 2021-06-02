@@ -1,9 +1,12 @@
 package br.com.unialfa.trapostadoradecargas.Endereco.Domain;
+import br.com.unialfa.trapostadoradecargas.Cliente.Domain.Cliente;
+import br.com.unialfa.trapostadoradecargas.Motorista.Domain.Motorista;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Endereco {
@@ -11,6 +14,13 @@ public class Endereco {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    
+    @OneToOne
+    private Cliente cliente;
+
+    @OneToOne
+    private Motorista motorista;
+		
     private String rua;
     private String numero;
     private String complemento;

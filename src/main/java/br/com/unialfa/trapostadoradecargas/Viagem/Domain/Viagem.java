@@ -19,9 +19,6 @@ public class Viagem {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
 
-    @OneToMany
-    private List<Cliente> cliente;
-
     private String horaPartida;
     private String horaChegada;
     private LocalDate dataSaida;
@@ -124,11 +121,4 @@ public class Viagem {
         this.frete = frete;
     }
 
-    public ArrayList<Cliente> getCliente() {
-        return (ArrayList<Cliente>) cliente;
-    }
-
-    public void setCliente(ArrayList<Cliente> cliente) {
-        this.cliente = cliente;
-    }
 }

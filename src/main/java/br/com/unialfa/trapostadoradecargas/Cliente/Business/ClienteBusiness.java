@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import java.util.Optional;
+
 @Service
 public class ClienteBusiness {
 
@@ -13,8 +15,14 @@ public class ClienteBusiness {
     @Autowired
     private ClienteRepository clienteRepository;
 
-    public Iterable<Cliente> listarCliente() {
+    public Iterable<Cliente> listarClientes()
+    {
         return clienteRepository.findAll();
+    }
+
+    public Optional<Cliente> bucarClientesPorId(long id)
+    {
+        return clienteRepository.findById(id);
     }
 
     public void cadastrarCliente(Cliente cliente) {

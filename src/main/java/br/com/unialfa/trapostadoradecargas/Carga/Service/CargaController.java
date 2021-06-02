@@ -2,9 +2,12 @@ package br.com.unialfa.trapostadoradecargas.Carga.Service;
 
 import br.com.unialfa.trapostadoradecargas.Carga.Business.CargaBusiness;
 import br.com.unialfa.trapostadoradecargas.Carga.Domain.Carga;
+import br.com.unialfa.trapostadoradecargas.Cliente.Domain.Cliente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping(path = "/api/carga")
@@ -14,9 +17,16 @@ public class CargaController {
     private CargaBusiness cargaBusiness;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<Carga> listarCarga() {
+    public Iterable<Carga> listarCargas() {
 
-        return cargaBusiness.listarCarga();
+        return cargaBusiness.listarCargas();
+
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Optional<Carga> buscarCargasPorid(@PathVariable(name = "id") long id){
+
+        return cargaBusiness.buscarCargasPorId(id);
     }
 
     @PostMapping(path = "/add")

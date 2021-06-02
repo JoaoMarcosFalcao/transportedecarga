@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 @RestController
 @RequestMapping(path = "/api/cliente")
 public class ClienteController {
@@ -16,10 +18,18 @@ public class ClienteController {
     private ClienteBusiness clienteBusiness;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<Cliente> listarCliente() {
+    public Iterable<Cliente> listarClientes() {
 
-        return clienteBusiness.listarCliente();
+        return clienteBusiness.listarClientes();
+
     }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public Optional<Cliente> bucarClientesPorid(@PathVariable(name = "id") long id){
+
+        return clienteBusiness.bucarClientesPorId(id);
+    }
+
 
     @PostMapping(path = "/add")
     public void cadastrarCliente( @RequestBody Cliente cliente ){
