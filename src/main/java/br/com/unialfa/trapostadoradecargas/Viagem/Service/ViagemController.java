@@ -17,14 +17,14 @@ public class ViagemController {
     private ViagemBusiness viagemBusiness;
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public Iterable<Viagem> listarViagems() {
+    public Iterable<Viagem> listarViagens() {
 
         return viagemBusiness.listarViagens();
 
     }
 
     @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public Optional<Viagem> buscarViagemsPorid(@PathVariable(name = "id") long id){
+    public Optional<Viagem> buscarViagensPorid(@PathVariable(name = "id") long id){
 
         return viagemBusiness.buscarViagensPorId(id);
     }
